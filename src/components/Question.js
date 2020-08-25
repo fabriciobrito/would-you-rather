@@ -5,7 +5,6 @@ import { formatQuestion } from '../utils/helpers'
 
 class Question extends Component {
   render() {
-    console.log(this.props.question);
     const { id, avatar, name, optionOne } = this.props.question;
     return(
       <Card
