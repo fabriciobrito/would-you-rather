@@ -1,20 +1,32 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card } from 'react-materialize';
+import { formatQuestion } from '../utils/helpers'
 
 class Question extends Component {
   render() {
+    console.log(this.props.question);
     return(
       <Card
         actions={[
-          <a key="1" href="#">View Poll</a>
+          <button key="1">View Poll</button>
         ]}
         horizontal
       >
-        {this.props.question}
+        {this.props.question.id}
       </Card>
     )
   }
 }
 
-export default connect()(Question);
+function mapStateToProps({ authedUser, questions, users}, { id }) {
+  const question = questions[id];
+  return {
+    authedUser,
+    question: question
+      ? formatQuestion(question, users[question.author], authedUser)
+      : null
+  }
+}
+
+export default connect(mapStateToProps)(Question);

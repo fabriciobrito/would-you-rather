@@ -5,30 +5,42 @@ import Question from './Question';
 
 class Dashboard extends Component {
   render() {
-    const { questionIDs } = this.props;
+    const { answeredIDs, unAnsweredIDs } = this.props;
     return(
       <div>
         <h1>Dashboard</h1>
         <Tabs>
-          <Tab title='Unanswered Questions'>
+          <Tab active title='Unanswered Questions'>
             <Row>
               <Col m={6}>
-                {questionIDs.map((questionID) => (
-                  <Question key={questionID} question={questionID} />
+                {unAnsweredIDs.map((questionID) => (
+                  <Question key={questionID} id={questionID} />
                 ))}
               </Col>
             </Row>
           </Tab>
-          <Tab title='Answered Questions'>Answered Questions</Tab>
+          <Tab title='Answered Questions'>
+            <Row>
+              <Col m={6}>
+                {answeredIDs.map((questionID) => (
+                  <Question key={questionID} id={questionID} />
+                ))}
+              </Col>
+            </Row>
+          </Tab>
         </Tabs>
       </div>
     )
   }
 }
 
-function mapStateToProps({ questions }) {
+function mapStateToProps({ questions, users, authedUser }) {
+  const answeredIDs = Object.keys(users[authedUser].answers);
+  const unAnsweredIDs = Object.keys(questions)
+    .filter((id) => (!answeredIDs.includes(id)))
   return {
-    questionIDs: Object.keys(questions)
+    answeredIDs,
+    unAnsweredIDs
   }
 }
 
