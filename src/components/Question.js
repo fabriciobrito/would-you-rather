@@ -6,19 +6,20 @@ import { formatQuestion } from '../utils/helpers'
 class Question extends Component {
   render() {
     console.log(this.props.question);
-    const { id, avatar } = this.props.question;
+    const { id, avatar, name, optionOne } = this.props.question;
     return(
       <Card
         horizontal
         header={<CardTitle image={avatar} />}
-        title='Would You Rather'
+        title={`${name} asks:`}
         actions={[
           <Button key={id} waves="light">
             View Poll
           </Button>
         ]}
       >
-        <div>{this.props.question.optionOne.text} OR ... </div>
+        <h6>Would You Rather</h6>
+        <div>{optionOne.text} OR ... </div>
       </Card>
     )
   }
