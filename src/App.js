@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { BrowserRouter as Router, Route} from 'react-router-dom';
 import { handleInitialData } from './actions/shared';
+import LoadingBar from 'react-redux-loading';
 import Dashboard from './components/Dashboard';
 import Menu from './components/Menu';
-import LoadingBar from 'react-redux-loading';
+import QuestionPage from './components/QuestionPage';
+
 import './App.css';
 
 class App extends Component{
@@ -13,14 +16,17 @@ class App extends Component{
   render() {
     const { loading } = this.props;
     return (
-      <div>
+      <Router>
         <LoadingBar />
         <Menu />
         {loading === true
           ? null
-          : <Dashboard />
+          : <div>
+              <Route path='/' exact component={Dashboard} />
+              <Route path='/questions/:id' component={QuestionPage} />
+            </div>
         }
-      </div>
+      </Router>
     );
   }
 }

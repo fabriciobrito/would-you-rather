@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { Card, CardTitle, Button } from 'react-materialize';
 import { formatQuestion } from '../utils/helpers'
 
 class Question extends Component {
+  handleClickViewPoll = (event) => {
+    event.preventDefault();
+    const { id } = this.props;
+    this.props.history.push(`/questions/${id}`)
+  }
   render() {
     const { id, avatar, name, optionOne } = this.props.question;
     return(
@@ -12,7 +18,11 @@ class Question extends Component {
         header={<CardTitle image={avatar} />}
         title={`${name} asks:`}
         actions={[
-          <Button key={id} waves="light">
+          <Button
+            key={id}
+            waves="light"
+            onClick={this.handleClickViewPoll}
+          >
             View Poll
           </Button>
         ]}
@@ -34,4 +44,4 @@ function mapStateToProps({ authedUser, questions, users}, { id }) {
   }
 }
 
-export default connect(mapStateToProps)(Question);
+export default withRouter(connect(mapStateToProps)(Question));
