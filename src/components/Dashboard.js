@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Tabs, Tab, Row, Col } from 'react-materialize';
-import Question from './Question';
+import Teaser from './Teaser';
 
 class Dashboard extends Component {
   render() {
@@ -13,7 +13,7 @@ class Dashboard extends Component {
             <Row>
               <Col m={6}>
                 {unAnsweredIDs.map((questionID) => (
-                  <Question key={questionID} id={questionID} />
+                  <Teaser key={questionID} id={questionID} />
                 ))}
               </Col>
             </Row>
@@ -22,7 +22,7 @@ class Dashboard extends Component {
             <Row>
               <Col m={6}>
                 {answeredIDs.map((questionID) => (
-                  <Question key={questionID} id={questionID} />
+                  <Teaser key={questionID} id={questionID} />
                 ))}
               </Col>
             </Row>
@@ -36,7 +36,7 @@ class Dashboard extends Component {
 function mapStateToProps({ questions, users, authedUser }) {
   const answeredIDs = Object.keys(users[authedUser].answers);
   const unAnsweredIDs = Object.keys(questions)
-    .filter((id) => (!answeredIDs.includes(id)))
+    .filter((id) => (!answeredIDs.includes(id)));
   return {
     answeredIDs,
     unAnsweredIDs

@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { Card, CardTitle, Button } from 'react-materialize';
 import { formatQuestion } from '../utils/helpers'
 
-class Question extends Component {
+class Teaser extends Component {
   handleClickViewPoll = (event) => {
     event.preventDefault();
     const { id } = this.props;
@@ -44,4 +44,4 @@ function mapStateToProps({ authedUser, questions, users}, { id }) {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(Question));
+export default withRouter(connect(mapStateToProps)(Teaser));
