@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { handleInitialData } from './actions/shared';
 import Dashboard from './components/Dashboard';
+import Menu from './components/Menu';
 import LoadingBar from 'react-redux-loading';
 import './App.css';
 
@@ -14,6 +15,7 @@ class App extends Component{
     return (
       <div>
         <LoadingBar />
+        <Menu />
         {loading === true
           ? null
           : <Dashboard />

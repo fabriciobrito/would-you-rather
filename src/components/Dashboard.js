@@ -8,7 +8,6 @@ class Dashboard extends Component {
     const { answeredIDs, unAnsweredIDs } = this.props;
     return(
       <div>
-        <h1>Dashboard</h1>
         <Tabs>
           <Tab active title='Unanswered Questions'>
             <Row>
