@@ -1,16 +1,17 @@
 import React from 'react';
 import { Navbar, NavItem } from 'react-materialize';
+import { NavLink } from 'react-router-dom';
 import LoginMenu from './LoginMenu';
 
 const Menu = (props) => {
   return(
     <Navbar brand={<LoginMenu />}>
-      <NavItem>
+      <NavLink to='/'>
         Home
-      </NavItem>
-      <NavItem>
+      </NavLink>
+      <NavLink to='/add'>
         New Question
-      </NavItem>
+      </NavLink>
       <NavItem>
         Leaderboard
       </NavItem>
