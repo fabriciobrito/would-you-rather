@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navbar, NavItem } from 'react-materialize';
+import { Navbar } from 'react-materialize';
 import { NavLink } from 'react-router-dom';
 import LoginMenu from './LoginMenu';
 
@@ -12,9 +12,9 @@ const Menu = (props) => {
       <NavLink to='/add'>
         New Question
       </NavLink>
-      <NavItem>
-        Leaderboard
-      </NavItem>
+      <NavLink to='/leaderboard'>
+        Leader Board
+      </NavLink>
     </Navbar>
   )
 }

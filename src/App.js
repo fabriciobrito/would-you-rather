@@ -7,6 +7,7 @@ import Dashboard from './components/Dashboard';
 import Menu from './components/Menu';
 import QuestionPage from './components/QuestionPage';
 import NewQuestion from './components/NewQuestion';
+import LeaderBoard from './components/LeaderBoard';
 
 import './App.css';
 
@@ -26,6 +27,7 @@ class App extends Component{
               <Route path='/' exact component={Dashboard} />
               <Route path='/questions/:id' component={QuestionPage} />
               <Route path='/add' component={NewQuestion} />
+              <Route path='/leaderboard' component={LeaderBoard} />
             </div>
         }
       </Router>
