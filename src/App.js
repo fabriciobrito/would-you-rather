@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import { handleInitialData } from './actions/shared';
 import LoadingBar from 'react-redux-loading';
+import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import Menu from './components/Menu';
 import QuestionPage from './components/QuestionPage';
@@ -16,19 +17,21 @@ class App extends Component{
     this.props.dispatch(handleInitialData());
   }
   render() {
-    const { loading } = this.props;
+    const { loading, authedUser } = this.props;
     return (
       <Router>
         <LoadingBar />
         <Menu />
         {loading === true
           ? null
-          : <div>
-              <Route path='/' exact component={Dashboard} />
-              <Route path='/questions/:id' component={QuestionPage} />
-              <Route path='/add' component={NewQuestion} />
-              <Route path='/leaderboard' component={LeaderBoard} />
-            </div>
+          : authedUser === ''
+            ? <Login />
+            : <div>
+                <Route path='/' exact component={Dashboard} />
+                <Route path='/questions/:id' component={QuestionPage} />
+                <Route path='/add' component={NewQuestion} />
+                <Route path='/leaderboard' component={LeaderBoard} />
+              </div>
         }
       </Router>
     );
@@ -37,6 +40,7 @@ class App extends Component{
 
 function mapStateToProps({ authedUser }) {
   return {
+    authedUser,
     loading: authedUser === null
   }
 }
