@@ -1,46 +1,68 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card, CardTitle, Button } from 'react-materialize';
+import { handleAnswerQuestion } from '../actions/questions'
 
 class Answer extends Component {
+  state = {
+    selectedAnswer: ''
+  };
+  handleChangeOption = (event) => {
+    this.setState({
+      selectedAnswer: event.target.value
+    })
+  };
+  handleSubmitAnswer = (event) => {
+    event.preventDefault();
+    const { dispatch, id } = this.props;
+    dispatch( handleAnswerQuestion(id, this.state.selectedAnswer) );
+  };
   render() {
-    console.log(this.props);
-    const { user, question } = this.props
+    const { user, question, id } = this.props
     const { avatarURL, name } = user;
-    const { id, optionOne, optionTwo } = question;
+    const { optionOne, optionTwo } = question;
     return(
-      <Card
-        horizontal
-        header={<CardTitle image={avatarURL} />}
-        title={`${name} asks:`}
-        actions={[
-          <Button
-            key={id}
-            waves="light"
-            onClick={this.handleSubmitAnswer}
-          >
-            Submit
-          </Button>
-        ]}
-      >
-        <form action="#">
+      <form action="#" onSubmit={this.handleSubmitAnswer}>
+        <Card
+          horizontal
+          header={<CardTitle image={avatarURL} />}
+          title={`${name} asks:`}
+          actions={[
+            <Button
+              key={id}
+              waves="light"
+              type="submit"
+              disabled={this.state.selectedAnswer === ''}
+            >
+              Submit
+            </Button>
+          ]}
+        >
           <p>
             <label>
-              <input name="option" type="radio" />
+              <input
+                type="radio"
+                value='optionOne'
+                checked={this.state.selectedAnswer === 'optionOne'}
+                onChange={this.handleChangeOption}
+              />
               <span>{optionOne.text}</span>
             </label>
           </p>
           <p>OR</p>
-          <p>
-            <label>
-              <input name="option" type="radio" />
+          <label>
+            <input
+              type="radio"
+              value='optionTwo'
+              checked={this.state.selectedAnswer === 'optionTwo'}
+              onChange={this.handleChangeOption}
+            />
               <span>{optionTwo.text}</span>
-            </label>
-          </p>
-        </form>
-      </Card>
+          </label>
+        </Card>
+      </form>
     )
-  }
+  };
 }
 
 function mapStateToProps({users, questions }, props) {
