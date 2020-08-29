@@ -3,7 +3,6 @@ import { CardPanel, ProgressBar, Row, Col } from 'react-materialize';
 
 const OptionResultCard = (props) => {
   const { text, votes, total, voted } = props;
-  console.log(props);
   return(
     <CardPanel>
       <span>

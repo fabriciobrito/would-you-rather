@@ -2,7 +2,6 @@ import React from 'react';
 import { Card, CardTitle, Row, Col } from 'react-materialize';
 
 const RankCard = (props) => {
-  console.log(props);
   const { avatar, name, answers, questions } = props;
   return(
     <Card

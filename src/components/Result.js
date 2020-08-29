@@ -5,7 +5,6 @@ import OptionResultCard from './OptionResultCard'
 
 class Result extends Component {
   render() {
-    console.log(this.props);
     const { avatar, name, optionOne, optionTwo, answer } = this.props;
     const totalVotes = optionOne.votes.length + optionTwo.votes.length
     return(
