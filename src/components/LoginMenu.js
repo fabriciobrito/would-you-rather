@@ -30,9 +30,9 @@ class LoginMenu extends Component {
 }
 
 function mapStateToProps({ users, authedUser }) {
-  const username = authedUser
-    ? users[authedUser].name
-    : null
+  const username = authedUser === null || authedUser === ''
+    ? null
+    : users[authedUser].name
   return {
     username
   }
