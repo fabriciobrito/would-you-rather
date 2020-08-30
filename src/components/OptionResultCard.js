@@ -5,17 +5,17 @@ const OptionResultCard = (props) => {
   const { text, votes, total, voted } = props;
   return(
     <CardPanel>
-      <span>
-        {text}
-        {voted && (
-          <Badge>Your Vote</Badge>
-        )}
-      </span>
+      {voted && (<Badge caption='Your Vote' className='new' />)}
       <Row>
-        <Col s={3}>
+        <Col s={12}>
+          <h6>{text}</h6>
+        </Col>
+        <Col s={12}>
           <ProgressBar progress={100*votes / total} />
         </Col>
-        <p>{votes} out of {total} votes</p>
+        <Col s={12}>
+          {votes} out of {total} votes ({Math.round(votes*100/total)}%)
+        </Col>
       </Row>
     </CardPanel>
   )
