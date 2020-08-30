@@ -28,9 +28,8 @@ class Answer extends Component {
           header={<CardTitle image={avatarURL} />}
           title={`${name} asks:`}
           actions={[
-            <div className='center-align'>
+            <div key={id} className='center-align'>
               <Button
-                key={id}
                 waves="light"
                 type="submit"
                 disabled={this.state.selectedAnswer === ''}
