@@ -13,13 +13,13 @@ class Result extends Component {
         header={<CardTitle image={avatar} />}
         title={`${name} asks:`}
       >
+        <h6>Would You Rather...</h6>
         <OptionResultCard
           text={optionOne.text}
           votes={optionOne.votes.length}
           total={totalVotes}
           voted={answer === 'optionOne'}
         />
-        <h6>Would You Rather {optionTwo.text}?</h6>
         <OptionResultCard
           text={optionTwo.text}
           votes={optionTwo.votes.length}
