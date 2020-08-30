@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Tabs, Tab } from 'react-materialize';
+import { Link } from 'react-router-dom';
 import Teaser from './Teaser';
 
 class Dashboard extends Component {
@@ -9,6 +10,14 @@ class Dashboard extends Component {
     return(
       <Tabs className='center-align'>
         <Tab active title='Unanswered Questions'>
+          {unAnsweredIDs.length === 0 && (
+            <span className="center-align">
+              <h5>
+                All the available Questions was already answered!
+              </h5>
+              <p>You can create new questions <Link to='/add'>HERE</Link>.</p>
+            </span>
+          )}
           {unAnsweredIDs.map((questionID) => (
             <Teaser key={questionID} id={questionID} />
           ))}
