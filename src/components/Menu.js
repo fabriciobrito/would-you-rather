@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 import LoginMenu from './LoginMenu';
 
 const Menu = (props) => {
-  console.log(props)
   return(
     <Navbar
       brand={<LoginMenu />}
