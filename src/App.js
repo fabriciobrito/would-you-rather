@@ -26,7 +26,7 @@ class App extends Component{
           ? null
           : authedUser === ''
             ? <Login />
-            : <div>
+            : <div className='container'>
                 <Route path='/' exact component={Dashboard} />
                 <Route path='/questions/:id' component={QuestionPage} />
                 <Route path='/add' component={NewQuestion} />
