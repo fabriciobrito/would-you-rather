@@ -1,19 +1,31 @@
 import React from 'react';
-import { Navbar } from 'react-materialize';
+import { Navbar, Icon } from 'react-materialize';
 import { NavLink } from 'react-router-dom';
 import LoginMenu from './LoginMenu';
 
 const Menu = (props) => {
+  console.log(props)
   return(
-    <Navbar brand={<LoginMenu />}>
+    <Navbar
+      brand={<LoginMenu />}
+      centerChildren={true}
+      menuIcon={<Icon>menu</Icon>}
+      options={{
+        draggable: true,
+        edge: 'left',
+        inDuration: 250,
+        outDuration: 200,
+        preventScrolling: true
+      }}
+    >
       <NavLink to='/'>
-        Home
+        <Icon left={true}>home</Icon>Home
       </NavLink>
       <NavLink to='/add'>
-        New Question
+      <Icon left={true}>add</Icon>New Question
       </NavLink>
       <NavLink to='/leaderboard'>
-        Leader Board
+      <Icon left={true}>grade</Icon>Leader Board
       </NavLink>
     </Navbar>
   )
