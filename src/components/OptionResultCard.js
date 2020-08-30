@@ -1,5 +1,5 @@
 import React from 'react';
-import { CardPanel, ProgressBar, Row, Col } from 'react-materialize';
+import { CardPanel, ProgressBar, Badge, Row, Col } from 'react-materialize';
 
 const OptionResultCard = (props) => {
   const { text, votes, total, voted } = props;
@@ -8,7 +8,7 @@ const OptionResultCard = (props) => {
       <span>
         {text}
         {voted && (
-          <span> (Your Vote)</span>
+          <Badge>Your Vote</Badge>
         )}
       </span>
       <Row>
