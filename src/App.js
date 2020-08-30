@@ -17,12 +17,12 @@ class App extends Component{
     this.props.dispatch(handleInitialData());
   }
   render() {
-    const { loading, authedUser } = this.props;
+    const { authedUser } = this.props;
     return (
       <Router>
         <LoadingBar />
         <Menu />
-        {loading === true
+        {authedUser === null
           ? null
           : authedUser === ''
             ? <Login />
@@ -40,8 +40,7 @@ class App extends Component{
 
 function mapStateToProps({ authedUser }) {
   return {
-    authedUser,
-    loading: authedUser === null
+    authedUser
   }
 }
 
