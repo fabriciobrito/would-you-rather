@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Card, CardTitle, Button } from 'react-materialize';
+import { Card, CardTitle, Button, Row, Col } from 'react-materialize';
 import { handleAnswerQuestion } from '../actions/questions'
 
 class Answer extends Component {
@@ -28,37 +28,45 @@ class Answer extends Component {
           header={<CardTitle image={avatarURL} />}
           title={`${name} asks:`}
           actions={[
-            <Button
-              key={id}
-              waves="light"
-              type="submit"
-              disabled={this.state.selectedAnswer === ''}
-            >
-              Submit
-            </Button>
+            <div className='center-align'>
+              <Button
+                key={id}
+                waves="light"
+                type="submit"
+                disabled={this.state.selectedAnswer === ''}
+              >
+                Submit
+              </Button>
+            </div>
           ]}
         >
-          <p>
-            <label>
-              <input
-                type="radio"
-                value='optionOne'
-                checked={this.state.selectedAnswer === 'optionOne'}
-                onChange={this.handleChangeOption}
-              />
-              <span>{optionOne.text}</span>
-            </label>
-          </p>
-          <p>OR</p>
-          <label>
-            <input
-              type="radio"
-              value='optionTwo'
-              checked={this.state.selectedAnswer === 'optionTwo'}
-              onChange={this.handleChangeOption}
-            />
-              <span>{optionTwo.text}</span>
-          </label>
+          <Row>
+            <Col s={12}>
+              <label>
+                <input
+                  type="radio"
+                  value='optionOne'
+                  checked={this.state.selectedAnswer === 'optionOne'}
+                  onChange={this.handleChangeOption}
+                />
+                <span>{optionOne.text}</span>
+              </label>
+            </Col>
+            <Col s={12} className='center-align'>
+              OR
+            </Col>
+            <Col s={12}>
+              <label>
+                <input
+                  type="radio"
+                  value='optionTwo'
+                  checked={this.state.selectedAnswer === 'optionTwo'}
+                  onChange={this.handleChangeOption}
+                />
+                <span>{optionTwo.text}</span>
+              </label>
+            </Col>
+          </Row>
         </Card>
       </form>
     )
