@@ -40,9 +40,8 @@ class NewQuestion extends Component {
             <Card
               title='Create New Question'
               actions={[
-                <div className='center-align'>
+                <div key='1' className='center-align'>
                   <Button
-                    key='1'
                     waves='light'
                     type='submit'
                     disabled={
