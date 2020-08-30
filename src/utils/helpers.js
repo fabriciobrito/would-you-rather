@@ -12,3 +12,16 @@ export function formatQuestion (question, author, authedUser) {
     answer: answers[id]
   }
 }
+
+export function formatOrdinal (number) {
+  switch(/.$/.exec(number)[0]) {
+    case '1':
+      return `${number}st`;
+    case '2':
+      return `${number}nd`;
+    case '3':
+      return `${number}rd`;
+    default:
+      return `${number}th`;
+  }
+}

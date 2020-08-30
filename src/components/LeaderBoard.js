@@ -16,7 +16,7 @@ class LeaderBoard extends Component {
               - Object.keys(users[a].questions).length
             )
           })
-          .map((userID) => {
+          .map((userID, index) => {
             const user = users[userID];
             return(
               <RankCard
@@ -25,6 +25,7 @@ class LeaderBoard extends Component {
                 name={user.name}
                 answers={Object.keys(user.answers).length}
                 questions={Object.keys(user.questions).length}
+                position={index + 1}
               />
             )
           })}
