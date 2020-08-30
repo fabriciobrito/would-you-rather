@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, Button, TextInput } from 'react-materialize';
+import { Card, Button, TextInput, Row, Col } from 'react-materialize';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { handleAddQuestion } from '../actions/questions'
@@ -35,38 +35,52 @@ class NewQuestion extends Component {
     }
     return(
       <form action='#' onSubmit={this.handleSubmitNewQuestion}>
-        <Card
-          actions={[
-            <Button
-              key='1'
-              waves='light'
-              type='submit'
-              disabled={
-                this.state.optionOneText === '' ||
-                this.state.optionTwoText === ''
-              }
+        <Row>
+          <Col s={12}>
+            <Card
+              title='Create New Question'
+              actions={[
+                <div className='center-align'>
+                  <Button
+                    key='1'
+                    waves='light'
+                    type='submit'
+                    disabled={
+                      this.state.optionOneText === '' ||
+                      this.state.optionTwoText === ''
+                    }
+                  >
+                    Submit
+                  </Button>
+                </div>
+              ]}
             >
-              Submit
-            </Button>
-          ]}
-          title="Create New Question"
-        >
-          <p>Complete the Question:</p>
-          <h6>Would you rather...</h6>
-          <TextInput
-            id="optionOne"
-            placeholder="Enter Option One Here..."
-            value={this.state.optionOneText}
-            onChange={this.handleTextChange}
-          />
-          <h6>OR</h6>
-          <TextInput
-            id="optionTwo"
-            placeholder="Enter Option Two Here..."
-            value={this.state.optionTwoText}
-            onChange={this.handleTextChange}
-          />
-        </Card>
+              <Row>
+                <Col s={12}>
+                  <p>Complete the Question:</p>
+                  <h6>Would you rather...</h6>
+                </Col>
+                <TextInput
+                  s={12}
+                  id='optionOne'
+                  placeholder='Enter Option One Here...'
+                  value={this.state.optionOneText}
+                  onChange={this.handleTextChange}
+                />
+                <Col s={12} className='center-align'>
+                  <h6>OR</h6>
+                </Col>
+                <TextInput
+                  s={12}
+                  id='optionTwo'
+                  placeholder='Enter Option Two Here...'
+                  value={this.state.optionTwoText}
+                  onChange={this.handleTextChange}
+                />
+              </Row>
+            </Card>
+          </Col>
+        </Row>
       </form>
     )
   };
