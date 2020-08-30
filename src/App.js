@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { BrowserRouter as Router, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { handleInitialData } from './actions/shared';
 import LoadingBar from 'react-redux-loading';
 import Login from './components/Login';
@@ -9,6 +9,7 @@ import Menu from './components/Menu';
 import QuestionPage from './components/QuestionPage';
 import NewQuestion from './components/NewQuestion';
 import LeaderBoard from './components/LeaderBoard';
+import NotFound from './components/NotFound';
 
 import './App.css';
 
@@ -27,10 +28,13 @@ class App extends Component{
           : authedUser === ''
             ? <Login />
             : <div className='container'>
-                <Route path='/' exact component={Dashboard} />
-                <Route path='/questions/:id' component={QuestionPage} />
-                <Route path='/add' component={NewQuestion} />
-                <Route path='/leaderboard' component={LeaderBoard} />
+                <Switch>
+                  <Route path='/' exact component={Dashboard} />
+                  <Route path='/questions/:id' component={QuestionPage} />
+                  <Route path='/add' component={NewQuestion} />
+                  <Route path='/leaderboard' component={LeaderBoard} />
+                  <Route component={NotFound} />
+                </Switch>
               </div>
         }
       </Router>

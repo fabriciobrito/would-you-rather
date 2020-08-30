@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { Card, CardTitle, Button, Row, Col } from 'react-materialize';
 import { handleAnswerQuestion } from '../actions/questions'
 
@@ -19,6 +20,9 @@ class Answer extends Component {
   };
   render() {
     const { user, question, id } = this.props
+    if( user === null) {
+      return <Redirect to='/NotFound' />
+    }
     const { avatarURL, name } = user;
     const { optionOne, optionTwo } = question;
     return(
@@ -76,7 +80,9 @@ function mapStateToProps({users, questions }, props) {
   const { id } = props;
   const question = questions[id];
   return {
-    user: users[question.author],
+    user: question === undefined
+      ? null
+      : users[question.author],
     question
   }
 }

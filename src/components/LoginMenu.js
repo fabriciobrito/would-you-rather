@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button } from 'react-materialize';
+import { Button} from 'react-materialize';
 import { logout } from '../actions/authedUser';
 
 class LoginMenu extends Component {
@@ -9,12 +9,12 @@ class LoginMenu extends Component {
     dispatch(logout());
   };
   render() {
-    const { username } = this.props;
+    const { user } = this.props;
     return(
         <div className='right' style={{marginRight: '15px'}}>
-          {username !== null && (
+          {user !== null && (
             <span>
-              {`Welcome, ${username}! `}
+              {`Welcome, ${user.name}! `}
               <Button
                 key='logout'
                 waves="light"
@@ -30,11 +30,11 @@ class LoginMenu extends Component {
 }
 
 function mapStateToProps({ users, authedUser }) {
-  const username = authedUser === null || authedUser === ''
+  const user = authedUser === null || authedUser === ''
     ? null
-    : users[authedUser].name
+    : users[authedUser]
   return {
-    username
+    user
   }
 }
 
