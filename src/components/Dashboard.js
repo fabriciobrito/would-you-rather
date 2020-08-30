@@ -7,7 +7,7 @@ class Dashboard extends Component {
   render() {
     const { answeredIDs, unAnsweredIDs } = this.props;
     return(
-      <Tabs>
+      <Tabs className='center-align'>
         <Tab active title='Unanswered Questions'>
           {unAnsweredIDs.map((questionID) => (
             <Teaser key={questionID} id={questionID} />
