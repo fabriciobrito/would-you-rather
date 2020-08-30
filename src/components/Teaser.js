@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { Card, CardTitle, Button } from 'react-materialize';
+import { Card, CardTitle, Button, Row, Col } from 'react-materialize';
 import { formatQuestion } from '../utils/helpers'
 
 class Teaser extends Component {
@@ -13,23 +13,28 @@ class Teaser extends Component {
   render() {
     const { id, avatar, name, optionOne } = this.props.question;
     return(
-      <Card
-        horizontal
-        header={<CardTitle image={avatar} />}
-        title={`${name} asks:`}
-        actions={[
-          <Button
-            key={id}
-            waves="light"
-            onClick={this.handleClickViewPoll}
+      <Row>
+        <Col s={12} m={10} l={8} offset='m1 l2' className='center-align'>
+          <Card
+            className="card-panel hoverable"
+            horizontal
+            header={<CardTitle image={avatar} />}
+            title={`${name} asks:`}
+            actions={[
+              <Button
+                key={id}
+                waves="light"
+                onClick={this.handleClickViewPoll}
+              >
+                View Poll
+              </Button>
+            ]}
           >
-            View Poll
-          </Button>
-        ]}
-      >
-        <h6>Would You Rather</h6>
-        <div>{optionOne.text} OR ... </div>
-      </Card>
+            <h6>Would You Rather</h6>
+            <div className="truncate">{optionOne.text} OR ... </div>
+          </Card>
+        </Col>
+      </Row>
     )
   }
 }
