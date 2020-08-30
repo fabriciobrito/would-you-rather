@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { Card, Button, Select } from 'react-materialize';
 import { setAuthedUser } from '../actions/authedUser';
 
 class Login extends Component {
   state = {
-    user: ''
+    user: '',
+    toHome: false
   };
   handleChangeUser = (event) => {
     this.setState({
@@ -15,9 +17,15 @@ class Login extends Component {
   handleLogin = (event) => {
     const { dispatch } = this.props;
     dispatch( setAuthedUser(this.state.user) );
+    this.setState({
+      toHome: true
+    })
   };
   render() {
     const { users } = this.props;
+    const { toHome } = this.state;
+    if( toHome === true)
+      return <Redirect to='/' />
     return(
       <Card
         actions={[
