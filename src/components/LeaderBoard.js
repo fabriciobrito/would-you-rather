@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Row, Col} from 'react-materialize';
 import RankCard from './RankCard';
 
 class LeaderBoard extends Component {
   render() {
     const { users } = this.props;
     return(
-      <div>
+      <Row>
         {Object.keys(users)
           .sort((a, b) => {
             return(
@@ -17,19 +18,21 @@ class LeaderBoard extends Component {
             )
           })
           .map((userID, index) => {
-            const user = users[userID];
+            const { avatarURL, name, answers, questions } = users[userID];
             return(
-              <RankCard
-                key={userID}
-                avatar={user.avatarURL}
-                name={user.name}
-                answers={Object.keys(user.answers).length}
-                questions={Object.keys(user.questions).length}
-                position={index + 1}
-              />
+              <Col key={userID} s={12} m={10} l={8} offset='m1 l2'>
+                <RankCard
+                  avatar={avatarURL}
+                  name={name}
+                  answers={Object.keys(answers).length}
+                  questions={Object.keys(questions).length}
+                  position={index + 1}
+                />
+              </Col>
             )
-          })}
-      </div>
+          })
+        }
+      </Row>
     )
   }
 }
