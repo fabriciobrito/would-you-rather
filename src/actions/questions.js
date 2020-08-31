@@ -1,5 +1,4 @@
-import { saveQuestionAnswer, saveQuestion } from '../utils/api'
-import { showLoading, hideLoading } from 'react-redux-loading';
+import { saveQuestionAnswer, saveQuestion } from '../utils/api';
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
 export const ANSWER_QUESTION = 'ANSWER_QUESTION';
@@ -29,11 +28,12 @@ export function handleAnswerQuestion( qid, answer ) {
       qid,
       answer
     }
-    dispatch(showLoading());
     return saveQuestionAnswer(info)
       .then(() => dispatch(answerQuestion(info)))
-      .then(dispatch(hideLoading()));
-    //ToDo: Handle DB error
+      .catch((e) => {
+        console.warn('Error in handleAnswerQuestion', e);
+        alert('There was an error answering the Question. Please try again');
+      });
   }
 }
 
@@ -46,7 +46,6 @@ function addQuestion(question) {
 
 export function handleAddQuestion ( optionOneText, optionTwoText ) {
   return (dispatch, getState) => {
-    dispatch(showLoading());
     const { authedUser } = getState();
     return saveQuestion({
       author: authedUser,
@@ -54,7 +53,9 @@ export function handleAddQuestion ( optionOneText, optionTwoText ) {
       optionTwoText
     })
       .then((question) => dispatch(addQuestion(question)))
-      .then(dispatch(hideLoading()));
-    //ToDo: Handle DB error
+      .catch((e) => {
+        console.warn('Error in handleAddQuestion', e);
+        alert('There was an error adding the Question. Please try again');
+      });
   }
 }
