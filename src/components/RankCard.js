@@ -12,7 +12,7 @@ const RankCard = (props) => {
         <span className='card-title'>
           {name}
           <Badge
-            style={{'font-size': '2.5rem'}}
+            style={{fontSize: '2.5rem'}}
             caption={formatOrdinal(position)}
           />
         </span>
